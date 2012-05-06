@@ -3,13 +3,20 @@ class Ability
 
   def initialize(user)
     
-      can :manage, Project do |project|
-        user.has_role? :admin, project
+      # can :manage, Project do |project|
+      #   user.has_role? :admin, project
+      # end
+
+      can :manage, :all do |model|
+        user.has_role? :admin, model
+      end
+      can :read, :all do |model|
+        user.has_role? :read, model
       end
 
-      can :read, Project do |project|
-        user.has_role? :read, project
-      end
+      # can :read, Project do |project|
+      #   user.has_role? :read, project
+      # end
     
     # Define abilities for the passed in user here. For example:
     #

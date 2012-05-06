@@ -28,3 +28,17 @@ rake db:migrate
 
 // authorization part ... define the ability class
 rails g cancan:ability
+
+rails g scaffold Deliverable description:string start_date:date end_date:date project:references --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed deliverables -f
+
+// add attachment content to the deliverable... where user will be able to upload documents
+rails g paperclip deliverable attachment
+
+// migrate the database
+rake db:migrate

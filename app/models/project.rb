@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
   attr_accessible :description, :name
-
-	#for rolify 
+  #for rolify 
   resourcify
 end
