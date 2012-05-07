@@ -1,47 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ospm</title>
+  <title>Opensource Project Management System</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="#">OSPM</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "Projects", projects_path %></li>
-            <li><%= link_to "Deliverables", deliverables_path  %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-</div>
+<%= yield :header %>
 
 <div class="container">
-<div id="user_nav" style="float:right;padding-right: 2px;">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
+  <%= yield :content %>
+  <hr />
+  <footer  class="pull-right">
+    <p><a href="http://ict4g.fbk.eu/">ICT4G</a> &copy; 2012</p>
+  </footer>
 </div>
-  
-
-
-<%= yield %>
-  </div>
-
-
 
 </body>
 </html>
