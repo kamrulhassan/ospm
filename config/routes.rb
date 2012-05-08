@@ -1,5 +1,7 @@
 Ospm::Application.routes.draw do
 
+
+
 get "home/index"
 
 scope "/repository" do
@@ -12,11 +14,17 @@ end
 scope "/plan" do
   devise_for :plan_users
 
-  resources :plan_projects  
+  resources :plan_projects do 
+    member do
+      get :publish
+    end
+  end
+
   resources :plan_workpackages
   resources :plan_tasks
   resources :plan_deliverables
   resources :plan_milestones
+  resources :plan_resources
 end
 
   # The priority is based upon order of creation:

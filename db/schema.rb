@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508011448) do
+ActiveRecord::Schema.define(:version => 20120508110646) do
 
   create_table "deliverables", :force => true do |t|
     t.string   "description"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20120508011448) do
   end
 
   add_index "deliverables", ["project_id"], :name => "index_deliverables_on_project_id"
+
+  create_table "plan_element_resources", :force => true do |t|
+    t.integer  "plan_element_id"
+    t.integer  "plan_resource_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "plan_element_resources", ["plan_element_id"], :name => "index_plan_element_resources_on_plan_element_id"
+  add_index "plan_element_resources", ["plan_resource_id"], :name => "index_plan_element_resources_on_plan_resource_id"
 
   create_table "plan_elements", :force => true do |t|
     t.string   "description"
@@ -53,6 +63,13 @@ ActiveRecord::Schema.define(:version => 20120508011448) do
   add_index "plan_milestones", ["plan_project_id"], :name => "index_plan_milestones_on_plan_project_id"
 
   create_table "plan_projects", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "plan_resources", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  :null => false
