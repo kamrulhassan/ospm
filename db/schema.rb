@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506103540) do
+ActiveRecord::Schema.define(:version => 20120508011448) do
 
   create_table "deliverables", :force => true do |t|
     t.string   "description"
@@ -27,6 +27,30 @@ ActiveRecord::Schema.define(:version => 20120506103540) do
   end
 
   add_index "deliverables", ["project_id"], :name => "index_deliverables_on_project_id"
+
+  create_table "plan_elements", :force => true do |t|
+    t.string   "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "plan_workpackage_id"
+    t.string   "type"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "plan_elements", ["plan_workpackage_id"], :name => "index_plan_elements_on_plan_workpackage_id"
+
+  create_table "plan_milestones", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.date     "date"
+    t.string   "means_of_verificaiton"
+    t.integer  "plan_project_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "plan_milestones", ["plan_project_id"], :name => "index_plan_milestones_on_plan_project_id"
 
   create_table "plan_projects", :force => true do |t|
     t.string   "name"
@@ -52,6 +76,16 @@ ActiveRecord::Schema.define(:version => 20120506103540) do
 
   add_index "plan_users", ["email"], :name => "index_plan_users_on_email", :unique => true
   add_index "plan_users", ["reset_password_token"], :name => "index_plan_users_on_reset_password_token", :unique => true
+
+  create_table "plan_workpackages", :force => true do |t|
+    t.string   "title"
+    t.string   "wp_type"
+    t.integer  "plan_project_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "plan_workpackages", ["plan_project_id"], :name => "index_plan_workpackages_on_plan_project_id"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
