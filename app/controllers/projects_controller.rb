@@ -1,12 +1,15 @@
 class ProjectsController < ApplicationController
-   layout "repository"
+  layout "repository"
   before_filter :authenticate_user!
   load_and_authorize_resource
-
   # GET /projects
   # GET /projects.json
   def index
     # @projects = Project.all
+
+    # need to change the bellow line - move to 
+# sign_out current_plan_user
+
     @projects = Project.with_role(:admin, current_user).concat(Project.with_role(:read, current_user))
 
     respond_to do |format|
