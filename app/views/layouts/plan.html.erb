@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ospm</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">OSPM-Project Planner</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Projects", plan_projects_path %></li>
+            <li><%= link_to "Workpackages", plan_workpackages_path  %></li>
+            <li><%= link_to "Tasks", plan_tasks_path  %></li>
+            <li><%= link_to "Deliverables", plan_deliverables_path  %></li>
+            <li><%= link_to "Milestones", plan_milestones_path %></li>
+          </ul>
+          <ul class="nav pull-right">
+            <% if plan_user_signed_in? %>
+              <li><%= link_to "Logged in as #{current_plan_user.email}. Not you? Sign Out",destroy_plan_user_session_path, :method => :delete %></li>
+            <% end %>            
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <%= yield %>  
+</div>
+</body>
+</html>

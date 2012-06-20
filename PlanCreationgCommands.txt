@@ -1,0 +1,79 @@
+// generate basic CRUD option for a model. for my case it is Project
+rails g scaffold PlanProject name:string description:string --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_projects -f
+
+rails g devise PlanUser
+
+// migrate the database
+rake db:migrate
+
+// to generate the entry point of our application
+rails generate controller Home index
+
+//
+rails g scaffold PlanWorkpackage title:string wp_type:string plan_project:references --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_workpackages -f
+
+// generate new model for the plan element. plan element will be either a task or a deliverable
+rails g model PlanElement description:string start_date:date end_date:date plan_workpackage:references
+
+// migrate the database
+rake db:migrate
+
+// generate task model
+rails g scaffold PlanTask description:string start_date:date end_date:date plan_workpackage:references --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_tasks -f
+
+// we are faking rail :) to generate a nice look with twitter-bootstrap :) 
+rake db:rollback
+
+
+// generate task model
+rails g scaffold PlanDeliverable description:string start_date:date end_date:date plan_workpackage:references --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_deliverables -f
+
+// we are faking rails :) to generate a nice look with twitter-bootstrap :) 
+rake db:rollback
+
+rails g scaffold PlanMilestone name:string description:string date:date means_of_verificaiton:string plan_project:references --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_milestones -f
+
+// resource define
+rails g scaffold PlanResource name:string description:string --skip-stylesheets
+
+// migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_resources -f
+
+// now create the model for relation between the plan element and the resource
+rails g model PlanElementResource
+
+// add columns migrate the database
+rake db:migrate

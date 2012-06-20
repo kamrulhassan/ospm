@@ -2,13 +2,15 @@ Ospm::Application.routes.draw do
 
 
 
+  
 get "home/index"
 
-scope "/repository" do
+scope "/repo" do
   devise_for :users
 
   resources :deliverables  
   resources :projects
+  resource :repository, :controller => "repository", :action => "index"
 end
 
 scope "/plan" do

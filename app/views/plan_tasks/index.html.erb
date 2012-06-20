@@ -1,0 +1,40 @@
+<%- model_class = PlanTask.new.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:plan_workpackage_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @plan_tasks.each do |plan_task| %>
+      <tr>
+        <td><%= link_to plan_task.id, plan_task_path(plan_task) %></td>
+        <td><%= plan_task.description %></td>
+        <td><%= plan_task.start_date %></td>
+        <td><%= plan_task.end_date %></td>
+        <td><%= plan_task.plan_workpackage_id %></td>
+        <td><%=l plan_task.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_plan_task_path(plan_task), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      plan_task_path(plan_task),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_plan_task_path,
+            :class => 'btn btn-primary' %>

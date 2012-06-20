@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  date: 2012-05-08
+  means_of_verificaiton: MyString
+  plan_project: 
+
+two:
+  name: MyString
+  description: MyString
+  date: 2012-05-08
+  means_of_verificaiton: MyString
+  plan_project: 

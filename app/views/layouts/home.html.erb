@@ -1,0 +1,45 @@
+<% content_for :header do %>
+  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">OSPM</a>
+        </div>
+      </div>
+  </div>
+<% end %>
+
+<% content_for :content do %>
+      <div class="row">
+          <div class="span6">
+          <div class="hero-unit">
+            Project planning is easy and intuative. Create your plan and we will generate your repository!!!<br /><br />
+            <center>
+             <p>
+                <%= link_to "Project Planning", plan_projects_path , :class => "btn btn-primary btn-large"%></p><br /><br />
+                   Try it! It is totally free!
+            </center>
+          </div>          
+          </div>
+      <div class="span6">
+        <div class="span6">
+          <div class="hero-unit">
+            Manage your  deliverables! Our reposity has role based access control system<br /><br />
+            <center>
+              <p>
+        <%= link_to "Project Repository", projects_path, :class => "btn btn-primary btn-large"%>
+              </p>
+              <br /><br />
+              Free! when you create your plan with us!!!
+            </center>
+        </div>
+      </div>
+      </div>
+    </div>
+<% end %>
+
+<%= render :template => 'layouts/application' %>
