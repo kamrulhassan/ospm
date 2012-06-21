@@ -10,6 +10,31 @@
   <%= @plan_project.description %>
 </p>
 
+<p>
+  <div class="btn-toolbar">
+    <div class="btn-group workpackage">
+      <button class="btn btn-large">workpackages</button>
+      <button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <% @plan_project.plan_workpackages.each do |workpackage| %>
+        <li><%= link_to workpackage.title, plan_workpackage_path(workpackage) %></li>
+        <%end%>
+      </ul>
+    </div><!-- /btn-group -->
+    <div class="btn-group milestone">
+      <button class="btn btn-large">milestones</button>
+      <button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <% @plan_project.plan_workpackages.each do |workpackage| %>
+        <li><%= link_to workpackage.title, plan_workpackage_path(workpackage) %></li>
+        <%end%>
+      </ul>
+    </div><!-- /btn-group -->
+  </div><!-- /btn-toolbar -->
+<p/>
+
+
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               plan_projects_path, :class => 'btn'  %>
