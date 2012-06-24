@@ -3,6 +3,8 @@ Ospm::Application.routes.draw do
 
 
   
+
+
 get "home/index"
 
 scope "/repo" do
@@ -27,6 +29,7 @@ scope "/plan" do
   resources :plan_deliverables
   resources :plan_milestones
   resources :plan_resources
+  resources :plan_organizations
 end
 
   # The priority is based upon order of creation:

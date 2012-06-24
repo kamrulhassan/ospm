@@ -1,8 +1,14 @@
-<%= form_for @plan_project, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @plan_organization, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :short_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :short_name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -11,28 +17,16 @@
       <%= f.text_area :description, :class => 'text_area' %>
     </div>
   </div>
-
-
   <div class="control-group">
-      <%= f.label :organizations, :class => 'control-label'%>
-      <% PlanOrganization.all.each do |organization|  %>
-      <div  class="controls">
-          <%= check_box_tag "plan_project[plan_organization_ids][]", organization.id, @plan_project.plan_organizations.include?(organization)%>
-          <%= organization.name %>
-      </div>
-      <% end %>
+    <%= f.label :country, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :country, :class => 'text_field' %>
+    </div>
   </div>
-
-
-
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                plan_projects_path, :class => 'btn' %>
+                plan_organizations_path, :class => 'btn' %>
   </div>
-
-
-
-
 <% end %>

@@ -77,3 +77,29 @@ rails g model PlanElementResource
 
 // add columns migrate the database
 rake db:migrate
+
+// change the column type of plan project
+rails g migration change_descriptioncolumntype_format_in_planproject
+  **def change
+   change_column :plan_projects, :description, :text
+  end**
+
+
+// organization create
+ rails g scaffold PlanOrganization name:string short_name:string description:text country:string --skip-stylesheets
+ 
+ // migrate the database
+rake db:migrate
+
+//add bootstrap theme ... i.e the css design 
+rails g bootstrap:themed plan_resources -f
+
+// add new column organization reference to plan resource
+rails g migration add_plan_organization_id_in_plan_resources
+
+// add new column organization reference to plan resource
+rails g migration add_plan_organization_id_in_plan_projects
+
+
+// change 
+rails g migration change_plan_organization_plan_project_columns

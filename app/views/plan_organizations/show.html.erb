@@ -1,0 +1,37 @@
+<%- model_class = @plan_organization.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+
+<p>
+  <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
+  <%= @plan_organization.name %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:short_name) %>:</strong><br>
+  <%= @plan_organization.short_name %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:description) %>:</strong><br>
+  <%= @plan_organization.description %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:country) %>:</strong><br>
+  <%= @plan_organization.country %>
+</p>
+
+<p>
+  <% @plan_organization.plan_resources.each do |resource| %>
+    <%= resource.name %>, <%= resource.description %><br />
+  <%end%>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              plan_organizations_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_plan_organization_path(@plan_organization), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              plan_organization_path(@plan_organization),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

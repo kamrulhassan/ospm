@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621134128) do
+ActiveRecord::Schema.define(:version => 20120623215607) do
 
   create_table "deliverables", :force => true do |t|
     t.string   "description"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(:version => 20120621134128) do
 
   add_index "plan_milestones", ["plan_project_id"], :name => "index_plan_milestones_on_plan_project_id"
 
+  create_table "plan_organizations", :force => true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.text     "description"
+    t.string   "country"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "plan_organizations_plan_projects", :force => true do |t|
+    t.integer "plan_organization_id"
+    t.integer "plan_project_id"
+  end
+
   create_table "plan_projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -72,8 +86,9 @@ ActiveRecord::Schema.define(:version => 20120621134128) do
   create_table "plan_resources", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "plan_organization_id"
   end
 
   create_table "plan_users", :force => true do |t|
