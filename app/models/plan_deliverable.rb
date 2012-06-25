@@ -1,3 +1,2 @@
 class PlanDeliverable < PlanElement
-
 end

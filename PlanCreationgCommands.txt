@@ -97,9 +97,18 @@ rails g bootstrap:themed plan_resources -f
 // add new column organization reference to plan resource
 rails g migration add_plan_organization_id_in_plan_resources
 
-// add new column organization reference to plan resource
-rails g migration add_plan_organization_id_in_plan_projects
+// change 
+rails g migration add_plan_organizations_plan_projects_relationship_table
 
+// add new column to workpackage
+rails g migration add_description_column_in_plan_workpackages
+**class AddDescriptionColumnInPlanWorkpackages < ActiveRecord::Migration
+  def change
+  	 add_column :plan_workpackages, :description, :text
+  end
+end**
 
 // change 
-rails g migration change_plan_organization_plan_project_columns
+rails g migration add_plan_organization_id_in_plan_workpackages
+
+

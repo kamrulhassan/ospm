@@ -17,12 +17,21 @@
       <%= f.date_select :end_date, :class => 'date_select' %>
     </div>
   </div>
-  <div class="control-group">
+  <!-- <div class="control-group">
     <%= f.label :plan_workpackage_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :plan_workpackage_id, :class => 'number_field' %>
     </div>
+  </div> -->
+
+  <div class="control-group">
+    <%= f.label :plan_workpackage, :class => 'control-label' %>
+    <div class="controls">
+    <%= collection_select 'plan_task', 'plan_workpackage_id', PlanWorkpackage.all, 'id', 'title' %>
+    </div>
   </div>
+
+
 
   <div class="control-group">
       <%= f.label :resource, :class => 'control-label'%>

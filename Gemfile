@@ -37,6 +37,11 @@ gem 'jquery-rails'
 
 gem 'rails-erd'
 gem 'railroady'
+
+
+gem 'nested_form'
+# gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
+
 # gem 'DepGraph'
 
 # To use ActiveModel has_secure_password

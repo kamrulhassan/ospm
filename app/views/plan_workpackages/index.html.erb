@@ -3,30 +3,34 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:wp_type) %></th>
-      <th><%= model_class.human_attribute_name(:plan_project_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
+      <th><%= model_class.human_attribute_name(:details) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:description) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:details) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:plan_project_id) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:created_at) %></th> -->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @plan_workpackages.each do |plan_workpackage| %>
       <tr>
-        <td><%= link_to plan_workpackage.id, plan_workpackage_path(plan_workpackage) %></td>
-        <td><%= plan_workpackage.title %></td>
-        <td><%= plan_workpackage.wp_type %></td>
-        <td><%= plan_workpackage.plan_project_id %></td>
-        <td><%=l plan_workpackage.created_at %></td>
+        <!-- <td><%= link_to plan_workpackage.id, plan_workpackage_path(plan_workpackage) %></td> -->
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_plan_workpackage_path(plan_workpackage), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      plan_workpackage_path(plan_workpackage),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
+        <em><%= link_to plan_workpackage.title, plan_workpackage_path(plan_workpackage) %> :
+        </em>
+        <%= plan_workpackage.description %><br/>
+        <%= plan_workpackage.plan_project.name %>&nbsp;
+        <span class="label label-success"><%= plan_workpackage.plan_organization.short_name %></span>    
+        </td>
+        <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_plan_workpackage_path(plan_workpackage), :class => 'btn btn-mini' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    plan_workpackage_path(plan_workpackage),
+                    :method => :delete,
+                    :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                    :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>

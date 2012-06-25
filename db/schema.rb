@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623215607) do
+ActiveRecord::Schema.define(:version => 20120625105428) do
 
   create_table "deliverables", :force => true do |t|
     t.string   "description"
@@ -113,8 +113,10 @@ ActiveRecord::Schema.define(:version => 20120623215607) do
     t.string   "title"
     t.string   "wp_type"
     t.integer  "plan_project_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.text     "description"
+    t.integer  "plan_organization_id"
   end
 
   add_index "plan_workpackages", ["plan_project_id"], :name => "index_plan_workpackages_on_plan_project_id"

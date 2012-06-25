@@ -1,4 +1,4 @@
-<%= form_for @plan_workpackage, :html => { :class => 'form-horizontal' } do |f| %>
+<%=   form_for @plan_workpackage, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -12,11 +12,33 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :plan_project, :class => 'control-label' %>
+    <div class="controls">
+    <%= collection_select 'plan_workpackage', 'plan_project_id', PlanProject.all, 'id', 'name' %>
+    </div>
+  </div>
+  <div class="control-group">
+      <%= f.label :coordinator_organization, :class => 'control-label'  %>
+      <div class="controls">
+      <%= collection_select 'plan_workpackage', 'plan_organization_id', PlanOrganization.all, 'id', 'short_name' %>
+    </div>
+  </div>
+<hr />
+
+<!-- 
+
+  <div class="control-group">
     <%= f.label :plan_project_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :plan_project_id, :class => 'number_field' %>
     </div>
-  </div>
+  </div> -->
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

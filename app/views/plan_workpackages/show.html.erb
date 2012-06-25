@@ -2,17 +2,55 @@
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <p>
-  <strong><%= model_class.human_attribute_name(:title) %>:</strong><br>
+  <strong><%= model_class.human_attribute_name(:title) %>:</strong>
+  <%= @plan_workpackage.title %>
+  <span class="label label-info">Responsible Partner</span>&nbsp;
+  <span class="label label-important"><%= @plan_workpackage.plan_organization.short_name %></span>
+  <br />
+
+  <strong><%= model_class.human_attribute_name(:description) %>:</strong>
+  <%= @plan_workpackage.description %><br />
+  <strong><%= model_class.human_attribute_name(:under_the_project_titled) %>:</strong>
+  <em>"<%= @plan_workpackage.plan_project.name %>"</em>
+
+
+  <div id="childElement">
+    <% @plan_workpackage.plan_tasks.each_with_index do |task,index| %>
+    <span class="badge badge-inverse">Task.<%= index%></span>
+    <%= link_to task.description, plan_task_path(task) %>
+    <br />
+    <%end%>
+  </div>
+  <br />
+
+  
+
+  <div id="childElement">
+    <% @plan_workpackage.plan_deliverables.each_with_index do |deliverable,index| %>
+    <span class="badge badge-success">Deliverable.<%= index%></span>
+    <%= link_to deliverable.description, plan_deliverable_path(deliverable) %>
+    <br />
+    <%end%>
+  </div>
+  
+  
+</p>
+<!-- 
+
+
+
+<p>
+  <strong><%= model_class.human_attribute_name(:title) %>:</strong>
   <%= @plan_workpackage.title %>
 </p>
 <p>
-  <strong><%= model_class.human_attribute_name(:wp_type) %>:</strong><br>
+  <strong><%= model_class.human_attribute_name(:wp_type) %>:</strong>
   <%= @plan_workpackage.wp_type %>
 </p>
 <p>
-  <strong><%= model_class.human_attribute_name(:plan_project_id) %>:</strong><br>
-  <%= @plan_workpackage.plan_project_id %>
-</p>
+  <strong><%= model_class.human_attribute_name(:plan_project) %>:</strong><br>
+  <%= @plan_workpackage.plan_project.name %>
+</p> -->
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
