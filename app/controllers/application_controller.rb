@@ -41,11 +41,24 @@ def create_repo_project(plan_project)
 
 	plan_project_workpackages.each do |plan_workpackage|
 
-		plan_elements=plan_workpackage.plan_elements
+		# plan_elements=plan_workpackage.plan_elements
+
+		# plan_elements.each do |plan_element|
+		# 		# insert deliverable
+		# 		@repo_deliverable=Deliverable.create(:description => plan_element.description, :start_date => plan_element.start_date, :end_date => plan_element.end_date, :project_id => @project.id)
+
+		# 		plan_element.plan_resources.each do | assigneduser|
+		# 			# insert user and assign admin role to deliverables
+		# 			create_user_for_repository("#{assigneduser.name}@ospm.com",:admin, @repo_deliverable)
+		# 		end
+		# 		assign_role(@plan_project_creator, :read, @repo_deliverable)
+		# end
+
+		plan_elements=plan_workpackage.plan_tasks
 
 		plan_elements.each do |plan_element|
 				# insert deliverable
-				@repo_deliverable=Deliverable.create(:description => plan_element.description, :start_date => plan_element.start_date, :end_date => plan_element.end_date, :project_id => @project.id)
+				@repo_deliverable=Deliverable.create(:description => plan_element.description, :start_date => plan_element.start_date, :end_date => plan_element.end_date, :project_id => @project.id, :display_option => 0, :status => 0)
 
 				plan_element.plan_resources.each do | assigneduser|
 					# insert user and assign admin role to deliverables
@@ -53,6 +66,35 @@ def create_repo_project(plan_project)
 				end
 				assign_role(@plan_project_creator, :read, @repo_deliverable)
 		end
+
+
+
+		plan_elements=plan_workpackage.plan_deliverables
+
+		plan_elements.each do |plan_element|
+				# insert deliverable
+				@repo_deliverable=Deliverable.create(:description => plan_element.description, :start_date => plan_element.start_date, :end_date => plan_element.end_date, :project_id => @project.id, :display_option => 1, :status => 0)
+
+				plan_element.plan_resources.each do | assigneduser|
+					# insert user and assign admin role to deliverables
+					create_user_for_repository("#{assigneduser.name}@ospm.com",:admin, @repo_deliverable)
+				end
+				assign_role(@plan_project_creator, :read, @repo_deliverable)
+		end
+
+		deliverables=Deliverable.all
+		users=User.all
+
+		deliverables.each do |del|
+		users.each do |usr|
+			usr.add_role :read, del unless usr.has_role? :admin, del
+		end
+		end
+
+		users.each do |usr|
+			usr.add_role :read, @project unless usr.has_role? :admin, @project
+		end
+
 	end
 end
 

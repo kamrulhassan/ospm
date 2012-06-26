@@ -42,3 +42,10 @@ rails g paperclip deliverable attachment
 
 // migrate the database
 rake db:migrate
+
+
+// change the column type of plan project
+rails g migration change_descriptioncolumntype_format_in_project
+  **def change
+   change_column :projects, :description, :text
+  end**

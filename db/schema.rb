@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625105428) do
+ActiveRecord::Schema.define(:version => 20120626115106) do
 
   create_table "deliverables", :force => true do |t|
     t.string   "description"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20120625105428) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.integer  "display_option"
+    t.integer  "status"
   end
 
   add_index "deliverables", ["project_id"], :name => "index_deliverables_on_project_id"
@@ -123,7 +125,7 @@ ActiveRecord::Schema.define(:version => 20120625105428) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

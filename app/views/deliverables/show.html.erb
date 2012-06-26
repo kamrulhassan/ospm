@@ -18,6 +18,11 @@
   <%= @deliverable.project_id %>
 </p>
 
+
+<%=  form_for(@deliverable,:url => deliverable_addparticipant_url(@deliverable), :action => 'addparticipant', :remote => true) do |f| %>
+  <%= f.submit "Add"%>
+<% end %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               deliverables_path, :class => 'btn'  %>

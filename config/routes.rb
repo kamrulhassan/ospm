@@ -10,7 +10,10 @@ get "home/index"
 scope "/repo" do
   devise_for :users
 
-  resources :deliverables  
+  resources :deliverables do
+      put 'addparticipant'
+    end
+    
   resources :projects
   resource :repository, :controller => "repository", :action => "index"
 end

@@ -17,7 +17,7 @@ class DeliverablesController < ApplicationController
   # GET /deliverables/1
   # GET /deliverables/1.json
   def show
-    # @deliverable = Deliverable.find(params[:id])
+    @deliverable = Deliverable.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -84,4 +84,17 @@ class DeliverablesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def addparticipant
+    @deliverable = Deliverable.find(params[:deliverable_id])
+    @deliverable.update_attribute("status",2)
+    respond_to do |format|
+      if @deliverable.save
+        format.js
+      end
+    end
+  end
+
+
 end

@@ -5,27 +5,48 @@
     <tr>
       <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:start_date) %></th>
-      <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:project_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:start_date) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:end_date) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:project_name) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:created_at) %></th> -->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @deliverables.each do |deliverable| %>
       <tr>
-        <td><%= link_to deliverable.description, deliverable_path(deliverable) %></td>
-        <!-- <td><%= deliverable.description %></td> -->
-        <td><%= deliverable.start_date %></td>
-        <td><%= deliverable.end_date %></td>
-        <td><%= deliverable.project_id %></td>
-        <td><%=l deliverable.created_at %></td>
         <td>
+          <%= link_to deliverable.description, deliverable_path(deliverable) %>
+          <% if deliverable.status == 0 %>
+          <span class="label label-warning">pending...</span>
+          
+          <% elsif deliverable.status == 1 %>
+          <span class="label label-important">waiting for approval...</span>
+            <% if deliverable.attachment.exists?%>
+              <span class="badge badge-success">File: </span>
+              <span class="badge badge-info"><%= deliverable.attachment_file_name%></span>
+            <%end%>
+            
+          <% elsif deliverable.status == 2 %>
+          
+          <span class="label label-success">approved</span>
+            <% if deliverable.attachment.exists?%>
+                <span class="badge badge-success">File: <%= deliverable.attachment_file_name%></span>
+            <%end%>
+
+          <% end %>
+
+
+          <br /><em><%= deliverable.project.name %></em>
+          <% if deliverable.display_option == 1 %>
+          hi<------------------
+          <% end %>
+
           <% if can? :update, deliverable %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_deliverable_path(deliverable), :class => 'btn btn-mini' %>
+                        edit_deliverable_path(deliverable), :class => 'btn btn-mini' %>
           <% end %>
+
           <% if can? :destroy, deliverable %>                      
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       deliverable_path(deliverable),

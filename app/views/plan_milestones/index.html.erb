@@ -3,27 +3,30 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:name) %></th> -->
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:means_of_verificaiton) %></th>
-      <th><%= model_class.human_attribute_name(:plan_project_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <!-- <th><%= model_class.human_attribute_name(:date) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:means_of_verificaiton) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:plan_project_id) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:created_at) %></th> -->
+      <!-- <th><%=t '.actions', :default => t("helpers.actions") %></th> -->
     </tr>
   </thead>
   <tbody>
     <% @plan_milestones.each do |plan_milestone| %>
       <tr>
-        <td><%= link_to plan_milestone.id, plan_milestone_path(plan_milestone) %></td>
-        <td><%= plan_milestone.name %></td>
-        <td><%= plan_milestone.description %></td>
+        <!-- <td><%= link_to plan_milestone.id, plan_milestone_path(plan_milestone) %></td> -->
+        <td>
+          <%= plan_milestone.name %>  <%= plan_milestone.description %><br />
+          <!-- <%= plan_milestone.plan_project_id %> -->
+          <em><%= plan_milestone.plan_project.name %></em>    
+        <!-- <td><%= plan_milestone.description %></td>
         <td><%= plan_milestone.date %></td>
         <td><%= plan_milestone.means_of_verificaiton %></td>
         <td><%= plan_milestone.plan_project_id %></td>
         <td><%=l plan_milestone.created_at %></td>
-        <td>
+        <td> -->
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_plan_milestone_path(plan_milestone), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
