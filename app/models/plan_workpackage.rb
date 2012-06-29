@@ -8,6 +8,7 @@ class PlanWorkpackage < ActiveRecord::Base
   has_many :plan_tasks, :dependent => :destroy
   has_many :plan_deliverables, :dependent => :destroy
   # accepts_nested_attributes_for :plan_tasks,  :reject_if => :all_blank, :allow_destroy => true
+  
   accepts_nested_attributes_for :plan_tasks,  :reject_if => :all_blank, :allow_destroy => true
-accepts_nested_attributes_for :plan_deliverables,  :reject_if => :all_blank, :allow_destroy => true  
+  accepts_nested_attributes_for :plan_deliverables,  :reject_if => :all_blank, :allow_destroy => true
 end

@@ -37,11 +37,11 @@
 <div class="control-group">
     <%= nf.label :task, :class => 'control-label' %> 
     <div class="controls">
-    <%= nf.text_field :description %> 
-    <%= nf.text_field :cstart_date %> 
-    <%= nf.text_field :cend_date %> 
-    <%= nf.link_to_remove 'Remove' %>
-  </div>
+    Description: <%= nf.text_field :description %> 
+    Start Date: <%= nf.text_field :cstart_date %> 
+    End Date: <%= nf.text_field :cend_date %> 
+    <span class="badge badge-important"><%= nf.link_to_remove 'Remove'%></span>
+    </div>
 </div>
 
 <% end %>
@@ -55,10 +55,10 @@
 <div class="control-group">
     <%= nf.label :deliverable, :class => 'control-label'  %> 
     <div class="controls">
-    <%= nf.text_field :description %> 
-    <%= nf.text_field :cstart_date %> 
-    <%= nf.text_field :cend_date %> 
-    <%= nf.link_to_remove 'Remove' %>
+    Description: <%= nf.text_field :description %> 
+    Start Date: <%= nf.text_field :cstart_date %> 
+    End Date: <%= nf.text_field :cend_date %> 
+    <span class="badge badge-important"><%= nf.link_to_remove 'Remove'%></span>
   </div>
 </div>
 
