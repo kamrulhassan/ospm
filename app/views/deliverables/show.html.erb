@@ -15,13 +15,17 @@
 </p>
 <p>
   <strong><%= model_class.human_attribute_name(:project_id) %>:</strong><br>
-  <%= @deliverable.project_id %>
+  <%= @deliverable.project.name %>
 </p>
 
+<% if @deliverable.attachment.exists?%>
+<%=  form_for(@deliverable,:url => deliverable_approve_url(@deliverable), :action => 'approve', :remote => true) do |f| %>  
+    
 
-<%=  form_for(@deliverable,:url => deliverable_addparticipant_url(@deliverable), :action => 'addparticipant', :remote => true) do |f| %>
-  <%= f.submit "Add"%>
+    <%= link_to "View File: "+@deliverable.attachment_file_name, @deliverable.attachment.url(:original, false), :class => 'btn '%>
+    <%= f.submit "Approve",  :class => 'btn btn-primary btn-mini'%>
 <% end %>
+<%end%>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -61,7 +61,7 @@ class DeliverablesController < ApplicationController
   # PUT /deliverables/1.json
   def update
     # @deliverable = Deliverable.find(params[:id])
-
+    @deliverable.update_attribute("status",1)
     respond_to do |format|
       if @deliverable.update_attributes(params[:deliverable])
         format.html { redirect_to @deliverable, notice: 'Deliverable was successfully updated.' }
@@ -86,7 +86,7 @@ class DeliverablesController < ApplicationController
   end
 
 
-  def addparticipant
+  def approve
     @deliverable = Deliverable.find(params[:deliverable_id])
     @deliverable.update_attribute("status",2)
     respond_to do |format|

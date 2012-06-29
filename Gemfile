@@ -40,6 +40,7 @@ gem 'railroady'
 
 
 gem 'nested_form'
+gem 'chronic'
 # gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 
 # gem 'DepGraph'

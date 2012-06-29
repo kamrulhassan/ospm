@@ -17,31 +17,32 @@
       <tr>
         <td>
           <%= link_to deliverable.description, deliverable_path(deliverable) %>
+
+          <!-- status of current item display here -->
           <% if deliverable.status == 0 %>
-          <span class="label label-warning">pending...</span>
-          
+                <span class="label label-warning">pending</span>
           <% elsif deliverable.status == 1 %>
-          <span class="label label-important">waiting for approval...</span>
-            <% if deliverable.attachment.exists?%>
-              <span class="badge badge-success">File: </span>
-              <span class="badge badge-info"><%= deliverable.attachment_file_name%></span>
-            <%end%>
-            
+                <span class="label label-important">waiting for approval</span>
+                <% if deliverable.attachment.exists?%>
+                      <span class="badge badge-success">File: </span>
+                      <span class="badge badge-info"><%= deliverable.attachment_file_name%></span>
+                <%end%>  
           <% elsif deliverable.status == 2 %>
-          
-          <span class="label label-success">approved</span>
-            <% if deliverable.attachment.exists?%>
-                <span class="badge badge-success">File: <%= deliverable.attachment_file_name%></span>
-            <%end%>
+                <span class="badge badge-success">approved</span>
+                <% if deliverable.attachment.exists?%>
+                      <span class="badge badge-success">File: <%= deliverable.attachment_file_name%></span>
+                <%end%>
+          <% end %><br />
+          <!-- status end -->
 
-          <% end %>
+          <small><%= deliverable.project.name %></small>
 
 
-          <br /><em><%= deliverable.project.name %></em>
+          <!-- 
           <% if deliverable.display_option == 1 %>
           hi<------------------
-          <% end %>
-
+          <% end %> -->
+          </td><td>
           <% if can? :update, deliverable %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
                         edit_deliverable_path(deliverable), :class => 'btn btn-mini' %>

@@ -3,14 +3,29 @@
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :description, :class => 'text_field' %>
+      <% if @deliverable.attachment.exists?%>
+      <span class="label label-warning">Uploaded File: <%= @deliverable.attachment_file_name %></span>
+      <span class="label label-success">approved</span>
+    <% end %>
     </div>
   </div>
+  
+  <% if @deliverable.status == 2%>
+  <%else%>
   <div class="control-group">
-    <%= f.label :attachment, :class => 'control-label' %>
+    <% if @deliverable.attachment.exists?%>
+          <%= f.label :replace, :class => 'control-label' %>
+    <%else%>
+          <%= f.label :attachment, :class => 'control-label' %>
+    <%end%>
     <div class="controls">
       <%= f.file_field :attachment, :class => 'file_field' %>
     </div>
   </div>
+  <%end%>
+
+
+
   <div class="control-group">
     <%= f.label :start_date, :class => 'control-label' %>
     <div class="controls">
@@ -23,10 +38,18 @@
       <%= f.date_select :end_date, :class => 'date_select' %>
     </div>
   </div>
-  <div class="control-group">
+  
+  <!-- <div class="control-group">
     <%= f.label :project_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :project_id, :class => 'number_field' %>
+    </div>
+  </div> -->
+
+<div class="control-group">
+    <%= f.label :project, :class => 'control-label' %>
+    <div class="controls">
+    <%= collection_select 'deliverable', 'project_id', Project.all, 'id', 'name' %>
     </div>
   </div>
 

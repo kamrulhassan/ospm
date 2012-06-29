@@ -112,3 +112,4 @@ end**
 rails g migration add_plan_organization_id_in_plan_workpackages
 
 
+rails g migration add_plan_organizations_plan_workpackages_relationship_table

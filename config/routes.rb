@@ -11,7 +11,7 @@ scope "/repo" do
   devise_for :users
 
   resources :deliverables do
-      put 'addparticipant'
+      put 'approve'
     end
     
   resources :projects
