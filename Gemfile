@@ -35,8 +35,6 @@ end
 
 gem 'jquery-rails'
 
-gem 'rails-erd'
-gem 'railroady'
 
 
 gem 'nested_form'
@@ -44,7 +42,8 @@ gem 'chronic'
 # gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 
 # gem 'DepGraph'
-
+# gem 'rails-erd'
+# gem 'railroady'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
