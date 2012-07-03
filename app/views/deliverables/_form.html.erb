@@ -5,7 +5,9 @@
       <%= f.text_field :description, :class => 'text_field' %>
       <% if @deliverable.attachment.exists?%>
       <span class="label label-warning">Uploaded File: <%= @deliverable.attachment_file_name %></span>
+  <% if @deliverable.status == 2%>    
       <span class="label label-success">approved</span>
+      <%end%>
     <% end %>
     </div>
   </div>

@@ -18,14 +18,19 @@
   <%= @deliverable.project.name %>
 </p>
 
-<% if @deliverable.attachment.exists?%>
+<% if @deliverable.attachment.exists? %>
+ <span class="label label-info">Uploaded File Name : <%= @deliverable.attachment_file_name %></span>
+<% if can? :update, @deliverable.project %>
 <%=  form_for(@deliverable,:url => deliverable_approve_url(@deliverable), :action => 'approve', :remote => true) do |f| %>  
     
 
     <%= link_to "View File: "+@deliverable.attachment_file_name, @deliverable.attachment.url(:original, false), :class => 'btn '%>
     <%= f.submit "Approve",  :class => 'btn btn-primary btn-mini'%>
 <% end %>
-<%end%>
+
+<% end %>
+
+<% end %>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

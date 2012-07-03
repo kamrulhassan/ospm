@@ -7,7 +7,6 @@ class DeliverablesController < ApplicationController
   def index
     # @deliverables = Deliverable.all
     @deliverables = Deliverable.with_role(:admin, current_user).concat(Deliverable.with_role(:read, current_user))
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @deliverables }
